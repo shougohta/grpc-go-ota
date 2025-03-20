@@ -1,20 +1,38 @@
-# オニオンアーキテクチャのgRPCサーバー
+# gRPCサーバー for オニオンアーキテクチャ
 
 ## ディレクトリ構造
 
+```
 myapp/
-│── cmd/               # アプリのエントリーポイント（main.go）
-│── internal/
-│   ├── domain/        # ドメインレイヤー（Entity, Repositoryのインターフェース）
-│   ├── service/       # ビジネスロジック（ユースケース）
-│   ├── repository/    # インフラ層（DBリポジトリ）
-│   ├── grpc/          # gRPCハンドラー
-│   ├── proto/         # Protocol Buffers定義と生成コード
-│── infrastructure/    # 外部依存（DB, gRPCサーバー）
-│── client/            # gRPCクライアント（クライアントアプリケーション）
-│   └── main.go        # クライアント実行ファイル
-│── go.mod             # Go モジュール管理
-│── main.go            # gRPCサーバーのエントリーポイント
+├── README.md
+├── client // クライアントサーバー
+│   └── main.go
+├── cmd
+├── go.mod
+├── go.sum
+├── internal
+│   ├── domain  // ドメインサービス層
+│   │   ├── model
+│   │   │   └── user.go
+│   │   └── repository // インフラ層へのアクセス(依存性逆転)
+│   │       └── user_repository.go
+│   ├── grpc
+│   ├── handler // ハンドラー層
+│   │   └── grpc
+│   │       └── user_handler.go
+│   ├── infrastructure // インフラ層
+│   │   ├── grpc
+│   │   │   └── grpc_server.go
+│   │   └── persistence
+│   │       └── user_repository.go
+│   ├── proto // プロトコルバッファ
+│   │   ├── user.pb.go
+│   │   ├── user.proto
+│   │   └── user_grpc.pb.go
+│   └── service
+│       └── user_service.go
+└── main.go
+```
 
 ## クライアントコード生成
 
