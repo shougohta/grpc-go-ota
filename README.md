@@ -39,3 +39,21 @@ myapp/
 ```
 protoc --go_out=. --go-grpc_out=. internal/proto/user.proto
 ```
+
+## gRPCサーバー起動
+
+rootディレクトリで以下を実行。
+
+```
+go run main.go
+```
+
+## クライアントサーバー起動
+
+```
+cd client
+```
+
+```
+go run main.go
+```
